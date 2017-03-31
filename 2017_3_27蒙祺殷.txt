@@ -1,0 +1,5 @@
+一.本次技术分享由陈老师提出的“师徒模型”开题，经过一番讨论，我联想到了人工智能的一个分支，专家系统（expert system）。专家系统是用来模拟人类专家的一类智能化程序，其核心是存储知识和用来进行推理的规则的知识库（knowledge base），以及推理机（inference engine）。二.随后一位同学提出了如何查看连接USB设备的Log的问题,根据孔建军学长的解答,我学到了几条命令,(1) lsusb: 显示系统已连接的USB设备 (2)管道符 ”|” 的使用 (3)wc: 利用wc命令,我们可以计算文件的字节大小,字符数,以及行数. 
+(4)dmesg: 用来打印或控制 kernel ring buffer. Kernel ring buffer用来存储系统开机后的Logs. 
+之所以称之为ring buffer,是因为缓冲区大小为常量,当缓冲区满,就会删除the oldest log,以让新的log进入.
+三./proc是一个虚拟文件系统,当中存储了系统进程的信息.
+四. kdump coredump

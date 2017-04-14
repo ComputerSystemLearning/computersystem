@@ -1,5 +1,7 @@
 这次的讨论围绕list.h展开，收获很大。<br />
-**1、为什么要将`List_head`结构体定义在`types.h`中**  <br />
+**1、为什么要将`List_head`结构体定义在`types.h`中** 
+===============================================
+<br />
   我最开始认为是更容易维护，就是把处于一个层级的定义在一起，管理起来更加方便，
 当需要淘汰掉某一个或者增加新的东西时更方便，这就类似于代码中的宏一样，一改全改。  <br />
 **2、关于使用`const`修饰函数参数**    <br />
@@ -57,7 +59,7 @@ void sort_and_show(const int * array, int count) {
 error:assignment of read-only location '*(array +(sizetype)((long unsigned int)j * 4ul))'
 ```
 意思非常明确，array指针所指向的空间的数据是read-only，即不允许修改，所以“×”所在行的数据修改操作是非法的，也就说<br />
-  `const int * array`  <==> `(const int) *array`
+  `const int * array`  <==> `(const int) *array`  <br />
 所以以后在编写c语言程序时，传递指针，用**const**修饰来限制操作，需要在源数据的基础上进行操作，但不允许破坏源数据时，就复制一份再操作。
 <br />
 **3、总结** <br />

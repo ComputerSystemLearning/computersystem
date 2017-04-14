@@ -49,7 +49,7 @@ void sort_and_show(const int * array, int count) {
         for(j = 0; j < numOfNotSorted - 1; j++) {
             if(array[j] < array[j + 1]) {
                 temp = array[j];
-                array[j] = array[j + 1];//\*\*
+                array[j] = array[j + 1];//\**********************
                 array[j + 1] = temp;
                 hasSwap = 1;
             }

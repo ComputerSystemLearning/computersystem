@@ -2,7 +2,6 @@
 
 
 **1、为什么要将`List_head`结构体定义在`types.h`中** 
---------------
 <br />
   我最开始认为是更容易维护，就是把处于一个层级的定义在一起，管理起来更加方便，
 当需要淘汰掉某一个或者增加新的东西时更方便，这就类似于代码中的宏一样，一改全改。  <br />
@@ -11,7 +10,8 @@
 或其指向的值进行修改**，如果需要修改，则选择传递地址，否则传递变量本身，这种做法的目的是**防止对数据的错误操作**，但带来的负担是，对栈空间
 的使用量非常大，而栈空间是有限的，以前也想过这个问题，但一直不知道如果全部传递指针的话，如何避免对数据的错误操作。
 今天看了源码，找到了解决这个问题的关键---**const**关键字修饰函数参数。下面这段代码的目的是对一个数组进行排序，并显示结果，但不更改原数据：
-2.1当未用**const**修饰时，编译通过，但对原始数据进行了更改:
+  2.1当未用**const**修饰<br />
+  编译通过，但对原始数据进行了更改:
 
 ```
 void sort_and_show(int * array, int count) {
@@ -34,7 +34,8 @@ void sort_and_show(int * array, int count) {
     show_array(array, count);
 }
 ```
-2.2使用**const**修饰时，编译未通过：
+2.2使用**const**修饰 <br />
+编译未通过：
 ```
 void sort_and_show(const int * array, int count) {
     int i, j;
@@ -61,7 +62,7 @@ void sort_and_show(const int * array, int count) {
 error:assignment of read-only location '*(array +(sizetype)((long unsigned int)j * 4ul))'
 ```
 意思非常明确，array指针所指向的空间的数据是read-only，即不允许修改，所以“×”所在行的数据修改操作是非法的，也就说<br />
-  `const int * array`  <==> `(const int) *array`  <br />
+ `const int * array`  <==> `(const int) *array`  <br />
 所以以后在编写c语言程序时，传递指针，用**const**修饰来限制操作，需要在源数据的基础上进行操作，但不允许破坏源数据时，就复制一份再操作。
 <br />
 **3、总结** <br />
